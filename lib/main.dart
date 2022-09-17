@@ -1,11 +1,13 @@
 import 'package:crypto_currency_tracker/Constants/Themes.dart';
-import 'package:crypto_currency_tracker/Pages/Home_page.dart';
+import 'package:crypto_currency_tracker/Pages/animatedsplashscreen.dart';
 //import 'package:crypto_currency_tracker/Pages/Login%20page/Screens/Welcomepage/welcome_screen.dart';
 import 'package:crypto_currency_tracker/Providers/Theme_provider.dart';
 import 'package:crypto_currency_tracker/Providers/marketprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Models/localStorage.dart';
+import 'Pages/LoginPage/LoginPage.dart';
+import 'Pages/Signup Page/Signup.dart';
 import 'Providers/Chart_provider.dart';
 
 void main() async{
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
             themeMode : themeProvider.themeMode,
             theme: lightTheme,
             darkTheme: darktheme,
-            home: Homepage(),
+            home: flashscreen(),
           );
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:crypto_currency_tracker/Models/Crytpocurrency.dart';
+import 'package:crypto_currency_tracker/Pages/bottomappbar.dart';
 import 'package:crypto_currency_tracker/Providers/Theme_provider.dart';
 import 'package:crypto_currency_tracker/Providers/marketprovider.dart';
 import 'package:crypto_currency_tracker/Widgets/Cryptolisttile.dart';
@@ -31,32 +32,39 @@ class _FavouritesState extends State<Favourites> {
       //backgroundColor: Color.fromRGBO(7, 16, 51, 0.99),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Container(
-          child: Consumer<Marketprovider>(
-              builder: (context, marketProvider, child) {
-            List<Cryptocurrency> favourites = marketProvider.markets
-                .where((element) => element.isFavorite == true)
-                .toList();
-            if (favourites.length > 0) {
-              return ListView.builder(
-                itemCount: favourites.length,
-                itemBuilder: (context, index) {
-                  Cryptocurrency currentCrypto = favourites[index];
-                  return CryptoListTile(currentCrypto: currentCrypto);
-                },
-              );
-            } else {
-              return Center(
-                child: Text(
-                  "No Favourites yet !!!",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25.0,
-                  ),
-                ),
-              );
-            }
-          }),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Consumer<Marketprovider>(
+                  builder: (context, marketProvider, child) {
+                List<Cryptocurrency> favourites = marketProvider.markets
+                    .where((element) => element.isFavorite == true)
+                    .toList();
+                if (favourites.length > 0) {
+                  return ListView.builder(
+                    itemCount: favourites.length,
+                    itemBuilder: (context, index) {
+                      Cryptocurrency currentCrypto = favourites[index];
+                      return CryptoListTile(currentCrypto: currentCrypto);
+                    },
+                  );
+                } else {
+                  return Center(
+                    child: Text(
+                      "No Favourites yet !!!",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                      ),
+                    ),
+                  );
+                }
+              }),
+
+            ),
+            bottomappbar(),
+          ],
         ),
       ),
     );

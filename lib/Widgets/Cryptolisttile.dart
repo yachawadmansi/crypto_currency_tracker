@@ -1,5 +1,5 @@
 import 'package:crypto_currency_tracker/Models/Crytpocurrency.dart';
-import 'package:crypto_currency_tracker/Pages/detailspage.dart';
+import 'package:crypto_currency_tracker/Pages/DetailInfoPage/detailspage.dart';
 import 'package:crypto_currency_tracker/Providers/marketprovider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
