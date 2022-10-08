@@ -1,3 +1,4 @@
+import 'package:crypto_currency_tracker/Controllers/auth_controller.dart';
 import 'package:crypto_currency_tracker/Pages/HomePage/Home_page.dart';
 import 'package:crypto_currency_tracker/Pages/LoginPage/LoginPage.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,13 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+ // final Authcontrollers _authController = Authcontrollers();
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
+
    bool textvisibility = true ;
+   bool isLoading = false ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +34,7 @@ class _SignupState extends State<Signup> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  controller: _fullNameController,
                   decoration: InputDecoration(
                   //  filled: true,
                   //  fillColor: Colors.white,
@@ -52,7 +60,7 @@ class _SignupState extends State<Signup> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  obscureText: textvisibility,
+                  controller: _emailcontroller,
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -78,6 +86,7 @@ class _SignupState extends State<Signup> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  controller: _passwordcontroller,
                   obscureText: textvisibility,
                   decoration: InputDecoration(
                       suffixIcon: IconButton(onPressed: (){
@@ -108,37 +117,56 @@ class _SignupState extends State<Signup> {
                 ),
               ),
               SizedBox(height: 15.0,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  obscureText: textvisibility,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      labelText:  "Password",
-                      labelStyle: TextStyle(
-                          fontSize: 25.0
-                      ),
-                      hintText: "Confirm  Password ",
-                      hintStyle: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black ,
-
-                      ),
-                      contentPadding: EdgeInsets.all(5) ,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        // borderSide: BorderSide(strokeAlign: StrokeAlign.center)
-                      )
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: TextFormField(
+              //     obscureText: textvisibility,
+              //     decoration: InputDecoration(
+              //         filled: true,
+              //         fillColor: Colors.white,
+              //         labelText:  "Password",
+              //         labelStyle: TextStyle(
+              //             fontSize: 25.0
+              //         ),
+              //         hintText: "Confirm  Password ",
+              //         hintStyle: TextStyle(
+              //           fontSize: 15.0,
+              //           color: Colors.black ,
+              //
+              //         ),
+              //         contentPadding: EdgeInsets.all(5) ,
+              //         border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(15.0),
+              //           // borderSide: BorderSide(strokeAlign: StrokeAlign.center)
+              //         )
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 20,) ,
               GestureDetector(
                 onTap: (){
-                  setState(() {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => Homepage()));
-                  });
+                  if(_fullNameController.text.isNotEmpty && _emailcontroller.text.isNotEmpty && _passwordcontroller.text.isNotEmpty){
+                    setState(() {
+                      isLoading = true ;
+                    });
+                    createAccount(_fullNameController.text, _emailcontroller.text, _passwordcontroller.text).then((user) =>{
+                      if(user != null){
+                        setState(() {
+                          isLoading = false ;
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> loginPage())) ;
+                        }) ,
+                       print("Signup Sucessful ")
+                      }else{
+                        print("Signup Failed")
+                      }
+                    })  ;
+                  }else{
+                    print("Please fill all  the feilds");
+                  }
+            //      _authController.SignupUsers(_fullNameController.text, _emailcontroller.text, _passwordcontroller.text);
+            //       print(_fullNameController .text);
+            //       print(_emailcontroller.text);
+            //       print(_passwordcontroller.text);
                 },
                 child: Container(
                   height: 70,

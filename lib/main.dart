@@ -1,27 +1,22 @@
 import 'package:crypto_currency_tracker/Constants/Themes.dart';
 import 'package:crypto_currency_tracker/Pages/animatedsplashscreen.dart';
-//import 'package:crypto_currency_tracker/Pages/Login%20page/Screens/Welcomepage/welcome_screen.dart';
 import 'package:crypto_currency_tracker/Providers/Theme_provider.dart';
 import 'package:crypto_currency_tracker/Providers/marketprovider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'Models/localStorage.dart';
-import 'Pages/LoginPage/LoginPage.dart';
-import 'Pages/Signup Page/Signup.dart';
 import 'Providers/Chart_provider.dart';
 
 void main() async{
-  // String currentTheme = await LocalStorage.getTheme()??"light";
-  runApp(MyApp(
-    // theme: currentTheme,
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 
 }
 
 class MyApp extends StatelessWidget {
-   // final String theme;
-  // required this.theme;
-   MyApp();
+  const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {

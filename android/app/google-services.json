@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "153015381604",
+    "project_id": "cryptotracker-6f819",
+    "storage_bucket": "cryptotracker-6f819.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153015381604:android:0c7328e22ed4db57213971",
+        "android_client_info": {
+          "package_name": "com.example.crypto_currency_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153015381604-ovm96ulk0s2irp9i6nge9gho6gja06mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI7oTXWDI1LTcuN_UV6Nz4gLtwK16ztE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153015381604-ovm96ulk0s2irp9i6nge9gho6gja06mn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
